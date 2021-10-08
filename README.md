@@ -8,7 +8,7 @@ Tested on: Nokia 6.1 running Android 10.
 # Usage
 - In the app you can save the details of fuel refills.
 - You can then export (share) the data as a json file to some place conveinient. (I'd recommend a dedicated folder in google drive/onedrive for this.)
-- Install desktop client for the cloud-service of your choise and enable offline access for the specific folder. Not mandatory but makes the process more conveinient.
+- Install desktop client for the cloud-service of your choise and enable offline access for the specific folder. (Not mandatory but makes the process more conveinient.)
 - Open the attached excel spreadsheet on your computer (Uses Power Query so might not work on excel versions older than 2016).
 - Point the File path present on one of the cells to the locallly synced cloud folder.
 - Refresh the data.
