@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FuelTracker.Views.ItemDetailPage"
+             xmlns:local="clr-namespace:FuelTracker.ViewModels" 
+             x:DataType="local:ItemDetailViewModel"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Command="{Binding DeleteItemCommand}" IsDestructive="True"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="{Binding Date, StringFormat='{0:d}'}" FontSize="Medium"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Payed:"/>
+            <Label Text="{Binding Cost, StringFormat='{0:C}'}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Amount:"/>
+            <Label Text="{Binding Amount, StringFormat='{0} l'}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Cost/l:"/>
+            <Label Text="{Binding CostPerL,StringFormat='{0:C}/l'}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Total km driven:"/>
+            <Label Text="{Binding CarKm,StringFormat='{0} km'}"/>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>

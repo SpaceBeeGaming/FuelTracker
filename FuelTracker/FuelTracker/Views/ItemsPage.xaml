@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FuelTracker.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:FuelTracker.ViewModels"  
+             xmlns:model="clr-namespace:FuelTracker.Models"
+             xmlns:servicees="clr-namespace:FuelTracker.Services"
+             x:DataType="local:ItemsViewModel"
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Export" Command="{Binding ExportCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="EvenTemplate">
+            <StackLayout Margin="0" Padding="10" x:DataType="model:Item" BackgroundColor="LightGray">
+                <Label Text="{Binding Date,StringFormat='{0:d}'}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Cost:"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListDetailTextStyle}"
+                                   FontSize="13"/>
+                    <Label Text="{Binding Cost,StringFormat='{0:C}'}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Amount:"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListDetailTextStyle}"
+                                   FontSize="13"/>
+                    <Label Text="{Binding Amount,StringFormat='{0} l'}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                </StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </DataTemplate>
+        <DataTemplate x:Key="OddTemplate">
+            <StackLayout Margin="0" Padding="10" x:DataType="model:Item" BackgroundColor="LightSlateGray">
+                <Label Text="{Binding Date,StringFormat='{0:d}'}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Cost:"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListDetailTextStyle}"
+                                   FontSize="13"/>
+                    <Label Text="{Binding Cost,StringFormat='{0:C}'}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Amount:"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListDetailTextStyle}"
+                                   FontSize="13"/>
+                    <Label Text="{Binding Amount,StringFormat='{0} l'}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                </StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </DataTemplate>
+
+        <servicees:AlternateColorsDataTemplateSelector x:Key="AlternateColorsSelector" 
+                                                       EvenTemplate="{StaticResource EvenTemplate}"
+                                                       OddTemplate="{StaticResource OddTemplate}"/>
+
+    </ContentPage.Resources>
+
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None"
+                ItemTemplate="{StaticResource AlternateColorsSelector}">
+            <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="Nothing to show." HorizontalTextAlignment="Center" FontSize="Medium"/>
+                        <Label Text="You don't have any records." HorizontalTextAlignment="Center" FontSize="Medium"/>
+                    </StackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
