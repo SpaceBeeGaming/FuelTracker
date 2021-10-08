@@ -15,3 +15,13 @@ Tested on: Nokia 6.1 running Android 10.
 - (You may wish to hide the first entry as most of the calculations won't work for it. )
 
 You can use this excel file for analyzing the data https://github.com/SpaceBeeGaming/FuelTracker/blob/master/FuelTrackerAnalysis.xlsx
+
+# Screenshots
+
+### App
+![Entry list](Screenshots/App_List.png) 
+![Add new entry dialog](Screenshots/App_Add.png) 
+![Entry details](Screenshots/App_Details.png)
+
+### Analysis spreadsheet:
+![Excel analysis](Screenshots/Excel_Analysis.png)
