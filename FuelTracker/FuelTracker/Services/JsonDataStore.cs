@@ -49,12 +49,6 @@ namespace FuelTracker.Services
 
         private async Task<List<Item>> LoadItems(CancellationToken cancellationToken = default)
         {
-            //if (await PermissionHandler.VerifyStoragePermission() is false)
-            //{
-            //    throw new InvalidOperationException("Permissions denied.");
-            //}
-
-            //string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "store.json");
             if (File.Exists(filePath) is false)
             {
                 await SaveItems(cancellationToken);
@@ -72,12 +66,6 @@ namespace FuelTracker.Services
 
         private async Task<bool> SaveItems(CancellationToken cancellationToken = default)
         {
-            //if (await PermissionHandler.VerifyStoragePermission() is false)
-            //{
-            //    return false;
-            //}
-
-            //string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "store.json");
             string json = JsonConvert.SerializeObject(items, Formatting.Indented);
 
             await File.WriteAllTextAsync(filePath, json, cancellationToken);

@@ -57,7 +57,7 @@ namespace FuelTracker.ViewModels
             try
             {
                 Items.Clear();
-                IEnumerable<Item> items = await DataStore.GetItemsAsync(false);
+                IEnumerable<Item> items = await DataStore.GetItemsAsync(true);
                 foreach (Item item in items)
                 {
                     Items.Add(item);
@@ -80,14 +80,11 @@ namespace FuelTracker.ViewModels
 
         private async void OnExport()
         {
-            //if (await PermissionHandler.VerifyStoragePermission() is true)
-            //{
             if (File.Exists(filePath))
             {
                 File.Copy(filePath, sharePath, true);
                 await ShareService.ShareFile(sharePath);
             }
-            //}
         }
 
         private async void OnItemSelected(Item? item)
