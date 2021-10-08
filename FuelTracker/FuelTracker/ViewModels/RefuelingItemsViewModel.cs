@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace FuelTracker.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class RefuelingItemsViewModel : BaseViewModel
     {
         private RefuelingLogItem? _selectedItem;
         private readonly string sharePath = Path.Combine(FileSystem.CacheDirectory, "fuelTrackerData.json");
@@ -39,9 +39,9 @@ namespace FuelTracker.ViewModels
             }
         }
 
-        public ItemsViewModel()
+        public RefuelingItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Refueling Log";
             Items = new ObservableCollection<RefuelingLogItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<RefuelingLogItem>(OnItemSelected);
