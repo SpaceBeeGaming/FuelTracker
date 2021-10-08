@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FuelTracker.Views.ItemsPage"
+             x:Class="FuelTracker.Views.RefuelingLogItemsPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:FuelTracker.ViewModels"  
              xmlns:model="clr-namespace:FuelTracker.Models"
              xmlns:servicees="clr-namespace:FuelTracker.Services"
-             x:DataType="local:ItemsViewModel"
-             x:Name="BrowseItemsPage">
+             x:DataType="local:RefuelingItemsViewModel">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
@@ -44,7 +43,7 @@
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:RefuelingItemsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
@@ -79,7 +78,7 @@
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:RefuelingItemsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
