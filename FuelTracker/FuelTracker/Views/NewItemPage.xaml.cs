@@ -12,7 +12,7 @@ namespace FuelTracker.Views
 {
     public partial class NewItemPage : ContentPage
     {
-        public Item? Item { get; set; }
+        public RefuelingLogItem? Item { get; set; }
 
         public NewItemPage()
         {

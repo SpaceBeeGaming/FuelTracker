@@ -12,13 +12,13 @@ using Xamarin.Essentials;
 
 namespace FuelTracker.Services
 {
-    public class JsonDataStore : IDataStore<Item>
+    public class JsonDataStore : IDataStore<RefuelingLogItem>
     {
-        private List<Item>? items;
+        private List<RefuelingLogItem>? items;
         private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "store.json");
 
 
-        public async Task<bool> AddItemAsync(Item item, CancellationToken cancellationToken = default)
+        public async Task<bool> AddItemAsync(RefuelingLogItem item, CancellationToken cancellationToken = default)
         {
             (items ??= await LoadItems(cancellationToken)).Add(item);
 
@@ -34,10 +34,10 @@ namespace FuelTracker.Services
                 && await SaveItems(cancellationToken);
         }
 
-        public async Task<Item> GetItemAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<RefuelingLogItem> GetItemAsync(Guid id, CancellationToken cancellationToken = default)
             => (items ??= await LoadItems(cancellationToken)).FirstOrDefault(x => x.Id == id);
 
-        public async Task<List<Item>> GetItemsAsync(bool forceRefresh = false, CancellationToken cancellationToken = default)
+        public async Task<List<RefuelingLogItem>> GetItemsAsync(bool forceRefresh = false, CancellationToken cancellationToken = default)
         {
             if (forceRefresh)
             {
@@ -47,7 +47,7 @@ namespace FuelTracker.Services
             return items ??= await LoadItems(cancellationToken);
         }
 
-        private async Task<List<Item>> LoadItems(CancellationToken cancellationToken = default)
+        private async Task<List<RefuelingLogItem>> LoadItems(CancellationToken cancellationToken = default)
         {
             if (File.Exists(filePath) is false)
             {
@@ -55,13 +55,13 @@ namespace FuelTracker.Services
             }
 
             string json = await File.ReadAllTextAsync(filePath, cancellationToken);
-            List<Item>? list = JsonConvert.DeserializeObject<List<Item>>(json);
+            List<RefuelingLogItem>? list = JsonConvert.DeserializeObject<List<RefuelingLogItem>>(json);
             if (list is not null)
             {
                 list = list.OrderByDescending(x => x.Date).ToList();
             }
 
-            return await Task.FromResult(list ?? new List<Item>());
+            return await Task.FromResult(list ?? new List<RefuelingLogItem>());
         }
 
         private async Task<bool> SaveItems(CancellationToken cancellationToken = default)

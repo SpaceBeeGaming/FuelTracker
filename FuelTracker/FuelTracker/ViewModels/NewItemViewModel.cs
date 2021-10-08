@@ -62,7 +62,7 @@ namespace FuelTracker.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new()
+            RefuelingLogItem newItem = new()
             {
                 Id = Guid.NewGuid(),
                 Cost = Cost,

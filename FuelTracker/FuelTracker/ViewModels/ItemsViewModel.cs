@@ -17,19 +17,19 @@ namespace FuelTracker.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private Item? _selectedItem;
+        private RefuelingLogItem? _selectedItem;
         private readonly string sharePath = Path.Combine(FileSystem.CacheDirectory, "fuelTrackerData.json");
         private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "store.json");
 
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<RefuelingLogItem> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public Command<RefuelingLogItem> ItemTapped { get; }
 
         public Command ExportCommand { get; }
 
-        public Item? SelectedItem
+        public RefuelingLogItem? SelectedItem
         {
             get => _selectedItem;
             set
@@ -42,9 +42,9 @@ namespace FuelTracker.ViewModels
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<RefuelingLogItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            ItemTapped = new Command<Item>(OnItemSelected);
+            ItemTapped = new Command<RefuelingLogItem>(OnItemSelected);
             ExportCommand = new Command(OnExport);
 
             AddItemCommand = new Command(OnAddItem);
@@ -57,8 +57,8 @@ namespace FuelTracker.ViewModels
             try
             {
                 Items.Clear();
-                IEnumerable<Item> items = await DataStore.GetItemsAsync(true);
-                foreach (Item item in items)
+                IEnumerable<RefuelingLogItem> items = await DataStore.GetItemsAsync(true);
+                foreach (RefuelingLogItem item in items)
                 {
                     Items.Add(item);
                 }
@@ -87,7 +87,7 @@ namespace FuelTracker.ViewModels
             }
         }
 
-        private async void OnItemSelected(Item? item)
+        private async void OnItemSelected(RefuelingLogItem? item)
         {
             if (item is not null)
             {

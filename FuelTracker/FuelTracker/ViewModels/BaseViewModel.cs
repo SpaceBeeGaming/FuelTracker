@@ -12,7 +12,7 @@ namespace FuelTracker.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<RefuelingLogItem> DataStore => DependencyService.Get<IDataStore<RefuelingLogItem>>();
 
         private bool isBusy;
         public bool IsBusy

@@ -2,7 +2,7 @@
 
 namespace FuelTracker.Models
 {
-    public class Item
+    public class RefuelingLogItem
     {
         public Guid Id { get; set; }
         public decimal Cost { get; set; }

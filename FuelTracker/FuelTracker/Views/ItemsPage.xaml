@@ -16,7 +16,7 @@
 
     <ContentPage.Resources>
         <DataTemplate x:Key="EvenTemplate">
-            <StackLayout Margin="0" Padding="10" x:DataType="model:Item" BackgroundColor="LightGray">
+            <StackLayout Margin="0" Padding="10" x:DataType="model:RefuelingLogItem" BackgroundColor="LightGray">
                 <Label Text="{Binding Date,StringFormat='{0:d}'}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
@@ -51,7 +51,7 @@
             </StackLayout>
         </DataTemplate>
         <DataTemplate x:Key="OddTemplate">
-            <StackLayout Margin="0" Padding="10" x:DataType="model:Item" BackgroundColor="LightSlateGray">
+            <StackLayout Margin="0" Padding="10" x:DataType="model:RefuelingLogItem" BackgroundColor="LightSlateGray">
                 <Label Text="{Binding Date,StringFormat='{0:d}'}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 

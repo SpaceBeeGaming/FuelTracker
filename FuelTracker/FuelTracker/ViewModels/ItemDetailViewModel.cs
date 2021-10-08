@@ -76,7 +76,7 @@ namespace FuelTracker.ViewModels
         {
             try
             {
-                Item? item = await DataStore.GetItemAsync(itemId);
+                RefuelingLogItem? item = await DataStore.GetItemAsync(itemId);
                 Cost = item.Cost;
                 Amount = item.Amount;
                 Date = item.Date;
