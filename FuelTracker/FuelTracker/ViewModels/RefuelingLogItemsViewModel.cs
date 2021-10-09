@@ -76,7 +76,7 @@ namespace FuelTracker.ViewModels
         public void OnAppearing() => IsBusy = true;
 
         private async void OnAddItem(object obj)
-            => await Shell.Current.GoToAsync(nameof(NewItemPage));
+            => await Shell.Current.GoToAsync(nameof(RefuelingLogNewItemPage));
 
         private async void OnExport()
         {

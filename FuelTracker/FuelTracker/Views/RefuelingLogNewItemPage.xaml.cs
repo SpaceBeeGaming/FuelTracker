@@ -10,14 +10,14 @@ using Xamarin.Forms.Xaml;
 
 namespace FuelTracker.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class RefuelingLogNewItemPage : ContentPage
     {
         public RefuelingLogItem? Item { get; set; }
 
-        public NewItemPage()
+        public RefuelingLogNewItemPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
+            BindingContext = new RefuelingLogNewItemViewModel();
         }
     }
 }

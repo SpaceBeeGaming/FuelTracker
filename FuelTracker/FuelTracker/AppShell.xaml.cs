@@ -14,7 +14,7 @@ namespace FuelTracker
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(RefuelingLogItemDetailPage), typeof(RefuelingLogItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(RefuelingLogNewItemPage), typeof(RefuelingLogNewItemPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e) 

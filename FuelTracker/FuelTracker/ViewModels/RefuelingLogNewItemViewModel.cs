@@ -9,12 +9,12 @@ using Xamarin.Forms;
 
 namespace FuelTracker.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class RefuelingLogNewItemViewModel : BaseViewModel
     {
         private decimal cost;
         private double amount;
 
-        public NewItemViewModel()
+        public RefuelingLogNewItemViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
