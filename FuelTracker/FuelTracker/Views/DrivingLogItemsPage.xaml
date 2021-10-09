@@ -5,8 +5,7 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:FuelTracker.ViewModels" 
              xmlns:model="clr-namespace:FuelTracker.Models"
-             x:DataType="local:DrivingLogItemsViewModel"
-             x:Name="DrivingLog">
+             x:DataType="local:DrivingLogItemsViewModel">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{Binding Title}"
