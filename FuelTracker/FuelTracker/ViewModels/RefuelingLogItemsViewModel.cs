@@ -19,7 +19,7 @@ namespace FuelTracker.ViewModels
     {
         private RefuelingLogItem? _selectedItem;
         private readonly string sharePath = Path.Combine(FileSystem.CacheDirectory, "fuelTrackerData.json");
-        private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "store.json");
+        private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, nameof(RefuelingLogItem) + "_store.json");
 
 
         public ObservableCollection<RefuelingLogItem> Items { get; }
@@ -57,7 +57,7 @@ namespace FuelTracker.ViewModels
             try
             {
                 Items.Clear();
-                IEnumerable<RefuelingLogItem> items = await DataStore.GetItemsAsync(true);
+                IEnumerable<RefuelingLogItem> items = await RefuelingDataStore.GetItemsAsync(true);
                 foreach (RefuelingLogItem item in items)
                 {
                     Items.Add(item);

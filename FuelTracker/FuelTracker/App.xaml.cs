@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
+using FuelTracker.Models;
 using FuelTracker.Services;
 using FuelTracker.Views;
 
@@ -18,7 +19,8 @@ namespace FuelTracker
             CultureInfo myCulture = new("fi-fi");
             CultureInfo.DefaultThreadCurrentCulture = myCulture;
 
-            DependencyService.Register<JsonDataStore>();
+            DependencyService.Register<IDataStore<RefuelingLogItem>, JsonDataStore<RefuelingLogItem>>();
+            DependencyService.Register<IDataStore<DrivingLogItem>, JsonDataStore<DrivingLogItem>>();
             MainPage = new AppShell();
         }
 

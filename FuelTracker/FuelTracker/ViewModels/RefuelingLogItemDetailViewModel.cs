@@ -67,7 +67,7 @@ namespace FuelTracker.ViewModels
 
         public async void OnDeleteItem(object obj)
         {
-            await DataStore.DeleteItemAsync(Guid.Parse(itemId));
+            await RefuelingDataStore.DeleteItemAsync(Guid.Parse(itemId));
 
             await Shell.Current.GoToAsync("..");
         }
@@ -76,16 +76,16 @@ namespace FuelTracker.ViewModels
         {
             try
             {
-                RefuelingLogItem? item = await DataStore.GetItemAsync(itemId);
+                RefuelingLogItem? item = await RefuelingDataStore.GetItemAsync(itemId);
                 Cost = item.Cost;
                 Amount = item.Amount;
                 Date = item.Date;
                 CostPerL = Cost / (decimal)Amount;
                 CarKm = item.CarKm;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine(ex);
             }
         }
     }

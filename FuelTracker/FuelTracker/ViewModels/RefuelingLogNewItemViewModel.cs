@@ -71,7 +71,7 @@ namespace FuelTracker.ViewModels
                 Date = DateTime.Now
             };
 
-            bool result = await DataStore.AddItemAsync(newItem);
+            bool result = await RefuelingDataStore.AddItemAsync(newItem);
             if (result is false)
             {
                 ErrorVisible = true;

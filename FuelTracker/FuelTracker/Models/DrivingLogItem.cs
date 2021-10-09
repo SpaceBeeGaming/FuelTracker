@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FuelTracker.Models
+﻿namespace FuelTracker.Models
 {
-    public class DrivingLogItem
-    {
-    }
+    public class DrivingLogItem : BaseLogItem { }
 }

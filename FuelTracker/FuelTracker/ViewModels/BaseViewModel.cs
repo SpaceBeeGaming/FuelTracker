@@ -12,7 +12,8 @@ namespace FuelTracker.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<RefuelingLogItem> DataStore => DependencyService.Get<IDataStore<RefuelingLogItem>>();
+        public static IDataStore<RefuelingLogItem> RefuelingDataStore => DependencyService.Get<IDataStore<RefuelingLogItem>>();
+        public static IDataStore<DrivingLogItem> DrivingDataStore => DependencyService.Get<IDataStore<DrivingLogItem>>();
 
         private bool isBusy;
         public bool IsBusy
@@ -31,7 +32,9 @@ namespace FuelTracker.ViewModels
         protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyName = "", Action? onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();

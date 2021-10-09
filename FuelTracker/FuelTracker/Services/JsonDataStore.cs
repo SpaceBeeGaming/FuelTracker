@@ -12,13 +12,23 @@ using Xamarin.Essentials;
 
 namespace FuelTracker.Services
 {
-    public class JsonDataStore : IDataStore<RefuelingLogItem>
+    public class JsonDataStore<T> : IDataStore<T> where T : BaseLogItem
     {
-        private List<RefuelingLogItem>? items;
-        private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "store.json");
+        private List<T>? items;
+        private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, typeof(T).Name + "_store.json");
 
+        public JsonDataStore()
+        {
+            // Migrate old store file.
+            string oldPath = Path.Combine(FileSystem.AppDataDirectory, "store.json");
+            if (File.Exists(oldPath))
+            {
+                File.Copy(oldPath, Path.Combine(FileSystem.AppDataDirectory, nameof(RefuelingLogItem) + "_store.json"));
+                File.Delete(oldPath);
+            }
+        }
 
-        public async Task<bool> AddItemAsync(RefuelingLogItem item, CancellationToken cancellationToken = default)
+        public async Task<bool> AddItemAsync(T item, CancellationToken cancellationToken = default)
         {
             (items ??= await LoadItems(cancellationToken)).Add(item);
 
@@ -34,10 +44,10 @@ namespace FuelTracker.Services
                 && await SaveItems(cancellationToken);
         }
 
-        public async Task<RefuelingLogItem> GetItemAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<T> GetItemAsync(Guid id, CancellationToken cancellationToken = default)
             => (items ??= await LoadItems(cancellationToken)).FirstOrDefault(x => x.Id == id);
 
-        public async Task<List<RefuelingLogItem>> GetItemsAsync(bool forceRefresh = false, CancellationToken cancellationToken = default)
+        public async Task<List<T>> GetItemsAsync(bool forceRefresh = false, CancellationToken cancellationToken = default)
         {
             if (forceRefresh)
             {
@@ -47,7 +57,7 @@ namespace FuelTracker.Services
             return items ??= await LoadItems(cancellationToken);
         }
 
-        private async Task<List<RefuelingLogItem>> LoadItems(CancellationToken cancellationToken = default)
+        private async Task<List<T>> LoadItems(CancellationToken cancellationToken = default)
         {
             if (File.Exists(filePath) is false)
             {
@@ -55,13 +65,13 @@ namespace FuelTracker.Services
             }
 
             string json = await File.ReadAllTextAsync(filePath, cancellationToken);
-            List<RefuelingLogItem>? list = JsonConvert.DeserializeObject<List<RefuelingLogItem>>(json);
+            List<T>? list = JsonConvert.DeserializeObject<List<T>>(json);
             if (list is not null)
             {
                 list = list.OrderByDescending(x => x.Date).ToList();
             }
 
-            return await Task.FromResult(list ?? new List<RefuelingLogItem>());
+            return await Task.FromResult(list ?? new List<T>());
         }
 
         private async Task<bool> SaveItems(CancellationToken cancellationToken = default)
