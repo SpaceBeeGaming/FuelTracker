@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace FuelTracker.ViewModels
 {
-    public class RefuelingItemsViewModel : BaseViewModel
+    public class RefuelingLogItemsViewModel : BaseViewModel
     {
         private RefuelingLogItem? _selectedItem;
         private readonly string sharePath = Path.Combine(FileSystem.CacheDirectory, "fuelTrackerData.json");
@@ -39,7 +39,7 @@ namespace FuelTracker.ViewModels
             }
         }
 
-        public RefuelingItemsViewModel()
+        public RefuelingLogItemsViewModel()
         {
             Title = "Refueling Log";
             Items = new ObservableCollection<RefuelingLogItem>();
@@ -92,7 +92,7 @@ namespace FuelTracker.ViewModels
             if (item is not null)
             {
                 // This will push the ItemDetailPage onto the navigation stack
-                await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+                await Shell.Current.GoToAsync($"{nameof(RefuelingLogItemDetailPage)}?{nameof(RefuelingLogItemDetailViewModel.ItemId)}={item.Id}");
             }
         }
     }

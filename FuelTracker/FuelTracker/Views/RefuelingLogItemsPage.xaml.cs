@@ -6,13 +6,13 @@ namespace FuelTracker.Views
 {
     public partial class RefuelingLogItemsPage : ContentPage
     {
-        private readonly RefuelingItemsViewModel _viewModel;
+        private readonly RefuelingLogItemsViewModel _viewModel;
 
         public RefuelingLogItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new RefuelingItemsViewModel();
+            BindingContext = _viewModel = new RefuelingLogItemsViewModel();
         }
 
         protected override void OnAppearing()

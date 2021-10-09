@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace FuelTracker.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    public class RefuelingLogItemDetailViewModel : BaseViewModel
     {
         private string itemId;
         private decimal cost;
@@ -62,7 +62,7 @@ namespace FuelTracker.ViewModels
             set => SetProperty(ref date, value);
         }
 
-        public ItemDetailViewModel()
+        public RefuelingLogItemDetailViewModel()
             => DeleteItemCommand = new Command(OnDeleteItem);
 
         public async void OnDeleteItem(object obj)

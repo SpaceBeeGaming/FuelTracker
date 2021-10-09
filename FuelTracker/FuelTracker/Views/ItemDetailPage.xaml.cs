@@ -6,12 +6,12 @@ using Xamarin.Forms;
 
 namespace FuelTracker.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class RefuelingLogItemDetailPage : ContentPage
     {
-        public ItemDetailPage()
+        public RefuelingLogItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new RefuelingLogItemDetailViewModel();
         }
     }
 }

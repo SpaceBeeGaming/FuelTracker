@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FuelTracker.Views.ItemDetailPage"
+             x:Class="FuelTracker.Views.RefuelingLogItemDetailPage"
              xmlns:local="clr-namespace:FuelTracker.ViewModels" 
-             x:DataType="local:ItemDetailViewModel"
+             x:DataType="local:RefuelingLogItemDetailViewModel"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Delete" Command="{Binding DeleteItemCommand}" IsDestructive="True"/>
