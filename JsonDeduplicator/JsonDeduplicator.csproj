@@ -8,6 +8,7 @@
 		<UserSecretsId>dotnet-JsonDeduplicator-2861DF95-1DBE-4D29-99C8-04BF081F661C</UserSecretsId>
 		<DebugType>embedded</DebugType>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
 	</PropertyGroup>
 
 
