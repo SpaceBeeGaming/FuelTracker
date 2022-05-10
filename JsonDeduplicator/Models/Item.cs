@@ -12,7 +12,7 @@ public class Item : IEquatable<Item>
         ReferenceEquals(this, other)
         && Id == other.Id
         && Cost == other.Cost
-        & Amount == other.Amount
+        && Amount == other.Amount
         && Date == other.Date
         && CarKm == other.CarKm;
 
