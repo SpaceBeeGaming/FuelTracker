@@ -29,7 +29,7 @@ public class Executor
         _logger.LogDebug("Working Directory: {WorkingDirectory}", directoryInfo.FullName);
 
         // Get .json files.
-        FileInfo targetFile = new(Path.Combine(directoryInfo.FullName, "fuelTrackerData_consolidated.json"));
+        FileInfo targetFile = new(Path.Combine(directoryInfo.FullName, "consolidated.json"));
         List<FileInfo> files = directoryInfo.GetFiles().Where(x => x.Extension is ".json").ToList();
 
         if (files.Count is 0)
@@ -45,7 +45,7 @@ public class Executor
         _jsonHandler.SaveItems(items, targetFile);
 
         // Removing the target file from the file collection so it doesn't get deleted along with the source files.
-        FileInfo? target = files.SingleOrDefault(x => x.Name.Contains("consolidated"));
+        FileInfo? target = files.SingleOrDefault(x => x.Name is "consolidated.json");
         if (target is not null)
         {
             files.Remove(target);
