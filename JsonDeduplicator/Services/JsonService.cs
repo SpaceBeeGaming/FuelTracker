@@ -77,13 +77,11 @@ public class JsonService
     /// <param name="items">List to deduplicate.</param>
     /// <param name="groupingPredicate">Grouping function.</param>
     /// <returns>The deduplicated list.</returns>
-    public List<T> DeduplicateItems<T, TKey>(List<T> items, Func<T, TKey> groupingPredicate)
+    public List<T> DeduplicateItems<T, TKey>(List<T> items, Func<T, TKey> groupingKeySelector)
     {
-        int oldCount = items.Count;
-        items = items.GroupBy(groupingPredicate).Select(items => items.First()).ToList();
-        int newCount = items.Count;
+        List<T> newItems = items.GroupBy(groupingKeySelector).Select(items => items.First()).ToList();
 
-        _logger.LogInformation("Deduplicated {BeforeCount} entries down to {AfterCount} entries", oldCount, newCount);
-        return items;
+        _logger.LogInformation("Deduplicated {BeforeCount} entries down to {AfterCount} entries.", items.Count, newItems.Count);
+        return newItems;
     }
 }
