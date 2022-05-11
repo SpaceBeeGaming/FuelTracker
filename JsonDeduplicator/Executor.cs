@@ -30,7 +30,7 @@ public class Executor
 
         // Get .json files.
         FileInfo targetFile = new(Path.Combine(directoryInfo.FullName, "consolidated.json"));
-        List<FileInfo> files = directoryInfo.GetFiles().Where(x => x.Extension is ".json").ToList();
+        List<FileInfo> files = directoryInfo.GetFiles("*.json").ToList();
 
         if (files.Count is 0)
         {
