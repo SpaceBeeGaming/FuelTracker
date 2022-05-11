@@ -28,7 +28,17 @@ public class JsonService
         List<T> items = new();
         foreach (FileInfo file in files)
         {
-            List<T>? result = JsonSerializer.Deserialize<List<T>>(File.ReadAllText(file.FullName));
+            List<T>? result;
+            try
+            {
+                result = JsonSerializer.Deserialize<List<T>>(File.ReadAllText(file.FullName));
+            }
+            catch (JsonException ex)
+            {
+                _logger.LogCritical(ex, "Json file {File} had errors.", file.FullName);
+                throw;
+            }
+
             if (result is null)
             {
                 _logger.LogWarning("Processed file {File} was empty.", file.FullName);
