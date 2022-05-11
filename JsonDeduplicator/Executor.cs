@@ -34,7 +34,7 @@ public class Executor
 
         if (files.Count is 0)
         {
-            _logger.LogCritical("No .json files found in {FilePath}", directoryInfo.FullName);
+            _logger.LogWarning("No .json files found in {FilePath}", directoryInfo.FullName);
             return false;
         }
 
