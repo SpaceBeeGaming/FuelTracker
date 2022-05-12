@@ -1,4 +1,6 @@
-﻿namespace JsonDeduplicator.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace JsonDeduplicator.Models;
 
 public class Item : IEquatable<Item>
 {
@@ -26,3 +28,7 @@ public class Item : IEquatable<Item>
     public static bool operator !=(Item? item1, Item? item2) => !(item1 == item2);
 
 }
+
+[JsonSerializable(typeof(List<Item>))]
+[JsonSourceGenerationOptions(WriteIndented = true)]
+internal partial class ItemJsonContext : JsonSerializerContext { }
