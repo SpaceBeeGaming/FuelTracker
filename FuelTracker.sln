@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelTracker", "FuelTracker\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{0FC76C93-5EFA-4761-8AA8-3FC7F86CE2C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDeduplicator", "JsonDeduplicator\JsonDeduplicator.csproj", "{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonDeduplicator", "JsonDeduplicator\JsonDeduplicator.csproj", "{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

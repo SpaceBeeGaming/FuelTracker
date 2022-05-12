@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 
+using JsonDeduplicator.Models;
+
 namespace JsonDeduplicator.Services;
 public class JsonService
 {
@@ -17,7 +19,7 @@ public class JsonService
     /// <param name="files">The list of files to gather.</param>
     /// <returns>Returns all of the items found within the <paramref name="files"/>.</returns>
     /// <exception cref="ArgumentException"></exception>
-    public List<T> LoadItems<T>(List<FileInfo> files)
+    public List<Item> LoadItems(List<FileInfo> files)
     {
         _logger.LogInformation("Processing {NumberOfFiles} files.", files.Count);
         if (files.Count is 0)
@@ -25,13 +27,13 @@ public class JsonService
             throw new ArgumentException("Input file list may not be empty.", nameof(files));
         }
 
-        List<T> items = new();
+        List<Item> items = new();
         foreach (FileInfo file in files)
         {
-            List<T>? result;
+            List<Item>? result;
             try
             {
-                result = JsonSerializer.Deserialize<List<T>>(File.ReadAllText(file.FullName));
+                result = JsonSerializer.Deserialize(File.ReadAllText(file.FullName), ItemJsonContext.Default.ListItem);
             }
             catch (JsonException ex)
             {
@@ -58,13 +60,10 @@ public class JsonService
     /// <typeparam name="T">The type of item to save.</typeparam>
     /// <param name="items">The items to save.</param>
     /// <param name="file">The file to save to.</param>
-    public void SaveItems<T>(List<T> items, FileInfo file)
+    public void SaveItems(List<Item> items, FileInfo file)
     {
         _logger.LogInformation("Saving {ItemCount} entries to {File}", items.Count, file.FullName);
-        string result = JsonSerializer.Serialize(items, new JsonSerializerOptions()
-        {
-            WriteIndented = true,
-        });
+        string result = JsonSerializer.Serialize(items, ItemJsonContext.Default.ListItem);
 
         File.WriteAllText(file.FullName, result);
     }
@@ -77,9 +76,9 @@ public class JsonService
     /// <param name="items">List to deduplicate.</param>
     /// <param name="groupingPredicate">Grouping function.</param>
     /// <returns>The deduplicated list.</returns>
-    public List<T> DeduplicateItems<T, TKey>(List<T> items, Func<T, TKey> groupingKeySelector)
+    public List<Item> DeduplicateItems(List<Item> items)
     {
-        List<T> newItems = items.GroupBy(groupingKeySelector).Select(items => items.First()).ToList();
+        List<Item> newItems = items.DistinctBy(item => item.Id).ToList();
 
         _logger.LogInformation("Deduplicated {BeforeCount} entries down to {AfterCount} entries.", items.Count, newItems.Count);
         return newItems;

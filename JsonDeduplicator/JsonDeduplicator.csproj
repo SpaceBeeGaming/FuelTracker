@@ -9,6 +9,7 @@
 		<DebugType>embedded</DebugType>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<PublishTrimmed>true</PublishTrimmed>
 	</PropertyGroup>
 
 

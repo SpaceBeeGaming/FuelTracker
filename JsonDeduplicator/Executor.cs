@@ -38,9 +38,9 @@ public class Executor
             return false;
         }
 
-        List<Item>? items = _jsonHandler.LoadItems<Item>(files);
+        List<Item>? items = _jsonHandler.LoadItems(files);
 
-        items = _jsonHandler.DeduplicateItems(items, new Func<Item, Guid>(item => item.Id));
+        items = _jsonHandler.DeduplicateItems(items);
 
         _jsonHandler.SaveItems(items, targetFile);
 
