@@ -19,7 +19,13 @@ internal class Executor
     public bool Execute()
     {
         // Working Directory.
-        DirectoryInfo directoryInfo = new(_configuration.GetConnectionString("StoragePath"));
+        var workingDirectory = _configuration.GetConnectionString("StoragePath");
+        if (String.IsNullOrWhiteSpace(workingDirectory))
+        {
+            workingDirectory = Environment.CurrentDirectory;
+        }
+
+        DirectoryInfo directoryInfo = new(workingDirectory);
         if (directoryInfo.Exists is false)
         {
             _logger.LogCritical("The directory {Directory} doesn't exist.", directoryInfo.FullName);
