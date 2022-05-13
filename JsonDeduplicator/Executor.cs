@@ -3,7 +3,7 @@ using JsonDeduplicator.Services;
 
 namespace JsonDeduplicator;
 
-public class Executor
+internal class Executor
 {
     private readonly ILogger<Executor> _logger;
     private readonly IConfiguration _configuration;

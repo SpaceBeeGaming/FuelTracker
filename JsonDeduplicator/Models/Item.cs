@@ -2,7 +2,7 @@
 
 namespace JsonDeduplicator.Models;
 
-public class Item : IEquatable<Item>
+internal class Item : IEquatable<Item>
 {
     public Guid Id { get; set; }
     public decimal Cost { get; set; }

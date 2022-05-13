@@ -3,7 +3,7 @@
 using JsonDeduplicator.Models;
 
 namespace JsonDeduplicator.Services;
-public class JsonService
+internal class JsonService
 {
     private readonly ILogger<JsonService> _logger;
 
