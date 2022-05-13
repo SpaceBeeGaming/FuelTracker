@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31129.286
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelTracker.Android", "FuelTracker\FuelTracker.Android\FuelTracker.Android.csproj", "{D97952BB-047C-472C-8CF3-3C64A07F82F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelTracker", "FuelTracker\FuelTracker\FuelTracker.csproj", "{988686CD-E4AA-4520-88C4-2215F869D390}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{0FC76C93-5EFA-4761-8AA8-3FC7F86CE2C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonDeduplicator", "JsonDeduplicator\JsonDeduplicator.csproj", "{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,9 +29,16 @@ Global
 		{988686CD-E4AA-4520-88C4-2215F869D390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{988686CD-E4AA-4520-88C4-2215F869D390}.Release|Any CPU.Build.0 = Release|Any CPU
 		{988686CD-E4AA-4520-88C4-2215F869D390}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D6AE06C-8A3E-4800-8FB6-39A7F607B260}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3D6AE06C-8A3E-4800-8FB6-39A7F607B260} = {0FC76C93-5EFA-4761-8AA8-3FC7F86CE2C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA3984C7-8854-4D56-B464-5FDF8C419502}
