@@ -30,7 +30,9 @@ internal class Executor
 
         // Get .json files.
         FileInfo targetFile = new(Path.Combine(directoryInfo.FullName, "consolidated.json"));
-        List<FileInfo> files = directoryInfo.GetFiles("*.json").ToList();
+        List<FileInfo> files = directoryInfo.GetFiles("*.json")
+            .Where(x => !x.Name.StartsWith("appsettings", StringComparison.OrdinalIgnoreCase))
+            .ToList();
 
         if (files.Count is 0)
         {
