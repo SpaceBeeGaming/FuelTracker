@@ -15,7 +15,6 @@ public class JsonService
     /// <summary>
     /// Reads and dematerializes the contents of the .json files.
     /// </summary>
-    /// <typeparam name="T">The type of data contained in the <paramref name="files"/>.</typeparam>
     /// <param name="files">The list of files to gather.</param>
     /// <returns>Returns all of the items found within the <paramref name="files"/>.</returns>
     /// <exception cref="ArgumentException"></exception>
@@ -57,7 +56,6 @@ public class JsonService
     /// <summary>
     /// Saves the <paramref name="items"/> to the path specified by <paramref name="file"/>.
     /// </summary>
-    /// <typeparam name="T">The type of item to save.</typeparam>
     /// <param name="items">The items to save.</param>
     /// <param name="file">The file to save to.</param>
     public void SaveItems(List<Item> items, FileInfo file)
@@ -69,12 +67,9 @@ public class JsonService
     }
 
     /// <summary>
-    /// Deduplicates the <paramref name="items"/> list based on the <paramref name="groupingPredicate"/>.
+    /// Deduplicates the <paramref name="items"/> list.
     /// </summary>
-    /// <typeparam name="T">Type contained in the <paramref name="items"/> list.</typeparam>
-    /// <typeparam name="TKey">Type of the grouping key.</typeparam>
     /// <param name="items">List to deduplicate.</param>
-    /// <param name="groupingPredicate">Grouping function.</param>
     /// <returns>The deduplicated list.</returns>
     public List<Item> DeduplicateItems(List<Item> items)
     {
