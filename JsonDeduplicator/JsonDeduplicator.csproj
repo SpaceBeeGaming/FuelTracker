@@ -10,6 +10,7 @@
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<AnalysisLevel>latest-recommended</AnalysisLevel>
 		<PublishTrimmed>true</PublishTrimmed>
+		<Authors>SpaceBeeGaming</Authors>
 	</PropertyGroup>
 
 
